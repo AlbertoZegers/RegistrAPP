@@ -12,7 +12,5 @@ export class InicioPage implements OnInit {
 
   ngOnInit() {
   }
-  recuperar() { 
-    this.router.navigate(['recuperacion']);
-}
+
 }
