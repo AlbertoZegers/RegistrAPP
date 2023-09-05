@@ -12,5 +12,8 @@ export class InicioPage implements OnInit {
 
   ngOnInit() {
   }
-
+  volver() {
+    this.router.navigate(['login']); 
+    
+  }
 }
