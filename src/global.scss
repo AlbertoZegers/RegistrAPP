@@ -24,3 +24,8 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.navegador{
+    --background: rgb(0,0,0);
+    --background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,209,0,1) 50%, rgba(255,179,0,1) 100%);
+}
