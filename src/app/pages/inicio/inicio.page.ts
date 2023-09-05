@@ -6,7 +6,7 @@ import { NavigationExtras, Router } from '@angular/router';
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
 })
-export class PrincipalPage implements OnInit {
+export class InicioPage implements OnInit {
   
   constructor(private router: Router) { }
 
