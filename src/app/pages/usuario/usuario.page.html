@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>usuario</ion-title>
+  <ion-toolbar class="navegador">
+    <ion-title color="warning">usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,4 +13,5 @@
     <ion-input label="Contraseña" type="password" labelPlacement="floating"></ion-input>
   </ion-item>
   <ion-button color="warning" expand="block"> Registrar </ion-button>
+  <ion-button color="warning"(click)="volver()" expand="block"> Volver </ion-button>
 </ion-content>

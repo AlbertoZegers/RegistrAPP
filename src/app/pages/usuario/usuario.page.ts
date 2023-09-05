@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-
+  volver() {
+    this.router.navigate(['login']); 
+    
+  }
 }
