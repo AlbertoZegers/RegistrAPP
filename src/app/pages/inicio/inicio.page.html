@@ -1,12 +1,13 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>inicio</ion-title>
+  <ion-toolbar class="navegador">
+    <ion-title color="warning">inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="centrado">
     <ion-img class="ion-margin-top" src="assets\inicio-educacion.svg"></ion-img>
-    <ion-button color="warning" expand="block"> Escanear Qr </ion-button>
+    <ion-button color="warning"  expand="block"> Escanear Qr </ion-button>
+    <ion-button color="warning"(click)="volver()" expand="block"> Cerrar Sesion </ion-button>
   </div>
 </ion-content>
