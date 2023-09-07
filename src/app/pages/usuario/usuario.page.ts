@@ -8,12 +8,29 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class UsuarioPage implements OnInit {
 
+  mdl_usuario: string = '';
+  mdl_password: string = '';
+
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
+
   volver() {
-    this.router.navigate(['login']); 
-    
+    let parametros: NavigationExtras = {
+      replaceUrl: true
+    }
+    this.router.navigate(['login'], parametros); 
+  }
+
+  crear() {
+    let parametros: NavigationExtras = {
+      state: {
+        user: this.mdl_usuario,
+        pass: this.mdl_password,
+        },
+        replaceUrl: true
+      }
+      this.router.navigate(['login'], parametros);
   }
 }
