@@ -8,11 +8,24 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class InicioPage implements OnInit {
   
+  usuario: string = '';
+  password: string = '';
+
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+    let parametros = this.router.getCurrentNavigation();
+
+    if(parametros?.extras.state) {
+      this.usuario = parametros?.extras.state['user'];
+      this.password = parametros?.extras.state['pass'];
   }
+}
   volver() {
+    let parametros: NavigationExtras = {
+      replaceUrl: true
+    }
     this.router.navigate(['login']); 
     
   }

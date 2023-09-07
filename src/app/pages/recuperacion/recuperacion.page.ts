@@ -12,6 +12,9 @@ export class RecuperacionPage implements OnInit {
   ngOnInit() {
   }
   volver() {
+    let parametros: NavigationExtras = {
+      replaceUrl: true
+    }
     this.router.navigate(['login']); 
     
   }
