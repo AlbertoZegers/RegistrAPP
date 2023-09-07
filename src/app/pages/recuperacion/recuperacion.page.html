@@ -1,11 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="navegador">
-    <ion-title color="warning">recuperacion</ion-title>
+    <ion-title>Recuperar Contraseña</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-img class="ion-margin-top" src="assets\usuario-perfiles.svg"></ion-img>
+  <p>@{{mdl_usuario}}</p>
   <ion-item class="fondo input ion-margin-top" lines="none">
     <ion-input label="Nueva Contraseña" type="password" labelPlacement="floating" [(ngModel)]="mdl_password"></ion-input>
   </ion-item>

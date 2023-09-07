@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="navegador">
     <ion-icon name="library-outline" size="large" color="warning" slot="start"></ion-icon>
-    <ion-title color="warning">login</ion-title>
+    <ion-title>Inicio de Sesion</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,11 +12,18 @@
       <ion-input label="Usuario" labelPlacement="floating" [(ngModel)]="mdl_usuario"></ion-input>
     </ion-item>
     <ion-item class="fondo input ion-margin-top" lines="none">
-      <ion-input label="Contraseña" type="password" labelPlacement="floating" [(ngModel)]="mdl_contrasena"></ion-input>
+      <ion-input label="Contraseña" type="password" labelPlacement="floating" [(ngModel)]="mdl_password"></ion-input>
     </ion-item>
   
     <ion-button color="warning" (click)="navegar()" expand="block" class="ion-margin-top boton barra"> Ingresar </ion-button>
     <ion-button color="warning" (click)="registrar()" expand="block" class="ion-margin-top boton barra"> Registrarse </ion-button>
     <ion-button color="warning" (click)="recuperar()" expand="block" class="ion-margin-top boton barra"> Recuperar Contraseña </ion-button>
   </div>
+  <ion-alert
+    [isOpen]="isAlertOpen"
+    header="Información"
+    message="Credenciales Inválidas"
+    [buttons]="alertButtons"
+    (didDismiss)="setOpen(false)">
+  </ion-alert>
 </ion-content>

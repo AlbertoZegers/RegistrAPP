@@ -9,7 +9,9 @@ import { NavigationExtras, Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   mdl_usuario: string = '';
-  mdl_contrasena: string = '';
+  mdl_password: string = '';
+  uni_usuario: string = '';
+  uni_password: string = '';
 
   isAlertOpen = false;
   alertButtons = ['OK'];
@@ -17,18 +19,23 @@ export class LoginPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    let parametros = this.router.getCurrentNavigation();
+    if(parametros?.extras.state){
+      this.uni_usuario =parametros?.extras.state['user'];
+      this.uni_password=parametros?.extras.state['pass'];
+    }
   }
 
   navegar() {
-    if(this.mdl_usuario == '' && this.mdl_contrasena == ''){
+    if(this.mdl_usuario == this.uni_usuario && this.mdl_password == this.uni_password){
       
       let parametros: NavigationExtras = {
         state: {
           user: this.mdl_usuario,
-          pass: this.mdl_contrasena
-        }
+          pass: this.mdl_password
+        },
+        replaceUrl: true
       }
-
       this.router.navigate(['inicio'], parametros);
     } else {
       this.isAlertOpen = true;
@@ -41,10 +48,21 @@ export class LoginPage implements OnInit {
 
 
 registrar() { 
-      this.router.navigate(['usuario']);
+  let parametros: NavigationExtras = {
+    replaceUrl: true
+  }
+      this.router.navigate(['usuario'], parametros);
+      
 }
 
 recuperar() { 
-  this.router.navigate(['recuperacion']);
+  let parametros: NavigationExtras = {
+    state: {
+      user: this.uni_usuario,
+      pass: this.uni_password
+    },
+    replaceUrl: true
+  }
+  this.router.navigate(['recuperacion'], parametros);
 }
 }

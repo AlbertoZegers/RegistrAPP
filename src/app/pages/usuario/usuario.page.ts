@@ -15,6 +15,7 @@ export class UsuarioPage implements OnInit {
 
   ngOnInit() {
   }
+
   volver() {
     let parametros: NavigationExtras = {
       replaceUrl: true
@@ -27,9 +28,9 @@ export class UsuarioPage implements OnInit {
       state: {
         user: this.mdl_usuario,
         pass: this.mdl_password,
+        },
         replaceUrl: true
-        }
       }
-      this.router.navigate(['principal'], parametros);
+      this.router.navigate(['login'], parametros);
   }
 }
