@@ -7,11 +7,8 @@
 <ion-content [fullscreen]="true">
   <ion-img class="ion-margin-top" src="assets\usuario-perfiles.svg"></ion-img>
   <ion-item class="fondo input ion-margin-top" lines="none">
-    <ion-input label="Contraseña Actual" labelPlacement="floating"></ion-input>
+    <ion-input label="Nueva Contraseña" type="password" labelPlacement="floating" [(ngModel)]="mdl_password"></ion-input>
   </ion-item>
-  <ion-item class="fondo input ion-margin-top" lines="none">
-    <ion-input label="Nueva Contraseña" type="password" labelPlacement="floating"></ion-input>
-  </ion-item>
-  <ion-button color="warning" expand="block"> Guardar </ion-button>
+  <ion-button color="warning" (click)="modificar()" expand="block"> Guardar </ion-button>
   <ion-button color="warning"(click)="volver()" expand="block"> Volver </ion-button>
 </ion-content>
