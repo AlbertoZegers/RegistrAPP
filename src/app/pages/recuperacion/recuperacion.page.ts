@@ -7,6 +7,8 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class RecuperacionPage implements OnInit {
 
+  mdl_password: string = '';
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -15,7 +17,15 @@ export class RecuperacionPage implements OnInit {
     let parametros: NavigationExtras = {
       replaceUrl: true
     }
-    this.router.navigate(['login']); 
-    
+    this.router.navigate(['login'], parametros); 
+  }
+  modificar() {
+      let parametros: NavigationExtras = {
+        state: {
+          pass: this.mdl_password,
+          replaceUrl: true
+        }
+      }
+      this.router.navigate(['principal'], parametros);
   }
 }
