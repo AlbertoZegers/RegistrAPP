@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-usuario',
@@ -9,9 +10,12 @@ import { NavigationExtras, Router } from '@angular/router';
 export class UsuarioPage implements OnInit {
 
   mdl_usuario: string = '';
+  mdl_correo: string = '';
   mdl_password: string = '';
+  mdl_nombre: string = '';
+  mdl_apellido: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
   }
@@ -24,11 +28,9 @@ export class UsuarioPage implements OnInit {
   }
 
   crear() {
+    this.apiService.almacenarPersona(
+      this.mdl_usuario, this.mdl_correo, this.mdl_password, this.mdl_nombre, this.mdl_apellido)
     let parametros: NavigationExtras = {
-      state: {
-        user: this.mdl_usuario,
-        pass: this.mdl_password,
-        },
         replaceUrl: true
       }
       this.router.navigate(['login'], parametros);
