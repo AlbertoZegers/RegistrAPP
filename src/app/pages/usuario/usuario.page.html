@@ -10,7 +10,16 @@
     <ion-input label="Usuario" labelPlacement="floating" [(ngModel)]="mdl_usuario"></ion-input>
   </ion-item>
   <ion-item class="fondo input ion-margin-top" lines="none">
+    <ion-input label="Correo" labelPlacement="floating" [(ngModel)]="mdl_correo"></ion-input>
+  </ion-item>
+  <ion-item class="fondo input ion-margin-top" lines="none">
     <ion-input label="Contraseña" type="password" labelPlacement="floating" [(ngModel)]="mdl_password"></ion-input>
+  </ion-item>
+  <ion-item class="fondo input ion-margin-top" lines="none">
+    <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="mdl_nombre"></ion-input>
+  </ion-item>
+  <ion-item class="fondo input ion-margin-top" lines="none">
+    <ion-input label="Apellido" labelPlacement="floating" [(ngModel)]="mdl_apellido"></ion-input>
   </ion-item>
   <ion-button color="warning" (click)="crear()" expand="block"> Registrar </ion-button>
   <ion-button color="warning"(click)="volver()" expand="block"> Volver </ion-button>
