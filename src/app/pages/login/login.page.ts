@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -10,25 +11,17 @@ export class LoginPage implements OnInit {
 
   mdl_usuario: string = '';
   mdl_password: string = '';
-  uni_usuario: string = '';
-  uni_password: string = '';
 
   isAlertOpen = false;
   alertButtons = ['OK'];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
-    let parametros = this.router.getCurrentNavigation();
-    if(parametros?.extras.state){
-      this.uni_usuario =parametros?.extras.state['user'];
-      this.uni_password=parametros?.extras.state['pass'];
-    }
   }
 
-  navegar() {
-    if(this.mdl_usuario == this.uni_usuario && this.mdl_password == this.uni_password){
-      
+  async navegar() {
+    if(this.apiService.loginPersona(this.mdl_usuario, this.mdl_password)){
       let parametros: NavigationExtras = {
         state: {
           user: this.mdl_usuario,
@@ -57,10 +50,6 @@ registrar() {
 
 recuperar() { 
   let parametros: NavigationExtras = {
-    state: {
-      user: this.uni_usuario,
-      pass: this.uni_password
-    },
     replaceUrl: true
   }
   this.router.navigate(['recuperacion'], parametros);

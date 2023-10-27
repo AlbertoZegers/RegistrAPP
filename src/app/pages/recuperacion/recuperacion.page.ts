@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-recuperacion',
   templateUrl: './recuperacion.page.html',
@@ -8,16 +9,12 @@ import { NavigationExtras, Router } from '@angular/router';
 export class RecuperacionPage implements OnInit {
 
   mdl_usuario: string = '';
+  mdl_newpassword: string = '';
   mdl_password: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
-    let parametros = this.router.getCurrentNavigation();
-    if(parametros?.extras.state){
-      this.mdl_usuario = parametros?.extras.state['user']
-      this.mdl_password = parametros?.extras.state['pass']
-    }
   }
 
   volver() {
@@ -27,11 +24,8 @@ export class RecuperacionPage implements OnInit {
     this.router.navigate(['login'], parametros); 
   }
   modificar() {
+    this.apiService.modificarPassPersona(this.mdl_usuario, this.mdl_newpassword, this.mdl_newpassword)
       let parametros: NavigationExtras = {
-        state: {
-          user: this.mdl_usuario,
-          pass: this.mdl_password
-        },
         replaceUrl: true
       }
       this.router.navigate(['login'], parametros);
