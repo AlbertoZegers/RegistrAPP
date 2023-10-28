@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-usuario',
@@ -27,9 +28,12 @@ export class UsuarioPage implements OnInit {
     this.router.navigate(['login'], parametros); 
   }
 
-  crear() {
-    this.apiService.almacenarPersona(
+  async crear() {
+    let data = this.apiService.almacenarPersona(
       this.mdl_usuario, this.mdl_correo, this.mdl_password, this.mdl_nombre, this.mdl_apellido)
+    let respuesta = await lastValueFrom(data);
+    let estadoPersona = JSON.stringify(respuesta)  
+    console.log(estadoPersona) 
     let parametros: NavigationExtras = {
         replaceUrl: true
       }
