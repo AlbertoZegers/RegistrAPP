@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,12 @@ export class LoginPage implements OnInit {
   }
 
   async navegar() {
-    if(this.apiService.loginPersona(this.mdl_usuario, this.mdl_password)){
+    let data = this.apiService.loginPersona(this.mdl_usuario, this.mdl_password);
+    let respuesta = await lastValueFrom(data);
+    let valorAcceso:any = JSON.stringify(respuesta);  
+    console.log(valorAcceso)
+    let accesoConcedido: any = JSON.stringify({"result":[{"RESPUESTA":"LOGIN OK"}]})
+    if(valorAcceso == accesoConcedido){
       let parametros: NavigationExtras = {
         state: {
           user: this.mdl_usuario,

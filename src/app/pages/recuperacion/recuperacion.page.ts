@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { lastValueFrom } from 'rxjs';
 @Component({
   selector: 'app-recuperacion',
   templateUrl: './recuperacion.page.html',
@@ -23,8 +24,11 @@ export class RecuperacionPage implements OnInit {
     }
     this.router.navigate(['login'], parametros); 
   }
-  modificar() {
-    this.apiService.modificarPassPersona(this.mdl_usuario, this.mdl_newpassword, this.mdl_newpassword)
+  async modificar() {
+    let data = this.apiService.modificarPassPersona(this.mdl_usuario, this.mdl_newpassword, this.mdl_password)
+    let respuesta = await lastValueFrom(data);
+    let estadoModificarCuenta = JSON.stringify(respuesta)
+    console.log(estadoModificarCuenta)
       let parametros: NavigationExtras = {
         replaceUrl: true
       }
