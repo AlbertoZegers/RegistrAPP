@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService, LoginService } from 'src/app/services/api.service';
 import { lastValueFrom } from 'rxjs';
 
 @Component({
@@ -16,8 +16,8 @@ export class LoginPage implements OnInit {
   isAlertOpen = false;
   alertButtons = ['OK'];
 
-  constructor(private router: Router, private apiService: ApiService) { }
-
+  constructor(private router: Router, private apiService: ApiService, private loginService: LoginService) { }
+  
   ngOnInit() {
   }
 

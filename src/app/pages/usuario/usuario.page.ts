@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService,LoginService } from 'src/app/services/api.service';
 import { lastValueFrom } from 'rxjs';
 
 @Component({
@@ -16,7 +16,7 @@ export class UsuarioPage implements OnInit {
   mdl_nombre: string = '';
   mdl_apellido: string = '';
 
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(private router: Router, private apiService: ApiService, private loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -39,4 +39,7 @@ export class UsuarioPage implements OnInit {
       }
       this.router.navigate(['login'], parametros);
   }
+  /*almacenarUsuario(user, contrasena){
+    this.loginService.almacenarUsuario(user, contrasena);
+  }*/
 }

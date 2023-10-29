@@ -34,4 +34,7 @@ export class RecuperacionPage implements OnInit {
       }
       this.router.navigate(['login'], parametros);
   }
+  /*recuperarContrasena(contrasena){
+    this.loginService.almacenarUsuario(contrasena);
+  }*/
 }
