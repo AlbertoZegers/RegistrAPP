@@ -26,7 +26,7 @@ export class InicioPage implements OnInit {
     let parametros: NavigationExtras = {
       replaceUrl: true
     }
-    this.router.navigate(['login']); 
+    this.router.navigate(['login'], parametros); 
     
   }
 }
