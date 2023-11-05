@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { lastValueFrom } from 'rxjs';
+import { DbService } from 'src/app/services/db.service';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,9 @@ export class LoginPage implements OnInit {
   isAlertOpen = false;
   alertButtons = ['OK'];
 
-  constructor(private router: Router, private apiService: ApiService) { }
 
+  constructor(private router: Router, private apiService: ApiService, private db: DbService) { }
+  
   ngOnInit() {
   }
 
@@ -35,6 +37,7 @@ export class LoginPage implements OnInit {
         },
         replaceUrl: true
       }
+      this.db.almacenarUsuario(this.mdl_usuario, this.mdl_password)
       this.router.navigate(['inicio'], parametros);
     } else {
       this.isAlertOpen = true;
@@ -44,7 +47,6 @@ export class LoginPage implements OnInit {
   setOpen(isOpen: boolean) {
     this.isAlertOpen = isOpen;
   }
-
 
 registrar() { 
   let parametros: NavigationExtras = {
@@ -60,4 +62,21 @@ recuperar() {
   }
   this.router.navigate(['recuperacion'], parametros);
 }
+
+  navegarOffLine(){
+    let valorAcceso: any = this.db.loginUsario(this.mdl_usuario, this.mdl_password)
+    console.log(valorAcceso)  
+    if(valorAcceso==1){
+      let parametros: NavigationExtras = {
+        state: {
+          user: this.mdl_usuario,
+          pass: this.mdl_password
+        }, replaceUrl: true
+        }
+        this.db.almacenarSesion(this.mdl_usuario, this.mdl_password);
+        this.router.navigate(['inicio'], parametros);
+    } else {
+      this.isAlertOpen = true;
+    }
+  }
 }

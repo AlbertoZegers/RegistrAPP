@@ -1,11 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="navegador">
-    <ion-title>Bienvenido: @{{usuario}}</ion-title>
+    <ion-title>{{ usuario }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="centrado">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ apellido }}</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+          {{ correo }}
+      </ion-card-content>
+    </ion-card>
     <ion-img class="ion-margin-top" src="assets\inicio-educacion.svg"></ion-img>
     <ion-button color="warning"  expand="block"> Escanear Qr </ion-button>
     <ion-button color="warning"(click)="volver()" expand="block"> Cerrar Sesion </ion-button>

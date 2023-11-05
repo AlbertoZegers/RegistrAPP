@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { lastValueFrom } from 'rxjs';
+import { DbService } from 'src/app/services/db.service';
 
 @Component({
   selector: 'app-usuario',
@@ -16,7 +17,7 @@ export class UsuarioPage implements OnInit {
   mdl_nombre: string = '';
   mdl_apellido: string = '';
 
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(private router: Router, private apiService: ApiService, private db: DbService) { }
 
   ngOnInit() {
   }
