@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="navegador">
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="centrado">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ usuario }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-img class="ion-margin-top" src="assets\inicio-educacion.svg"></ion-img>
+    <ion-list>
+      <ion-item *ngFor="let x of asistencias">
+        <ion-label position="stacked">{{x.ASIGNATURA}}</ion-label>
+        <ion-label position="stacked">{{x.CODIGO_ASIGNATURA}}</ion-label>
+        <ion-label position="stacked">{{x.TOTAL_CLASES}}</ion-label>
+        <ion-label position="stacked">{{x.CLASES_PRESENTE}}</ion-label>
+        <ion-label position="stacked">{{x.CLASES_AUSENTE}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <!-- <ion-list>
+      <ion-item *ngFor="let barcode of barcodes">
+        <ion-label position="stacked">{{ barcode.format }}</ion-label>
+        <ion-input type="text" [value]="barcode.rawValue"></ion-input>
+      </ion-item>
+    </ion-list> -->
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button color="warning" (click)="scan()" [disabled]="!isSupported">
+        <ion-icon name="scan"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-button color="warning"(click)="volver()" expand="block"> Cerrar Sesion </ion-button>
+  </div>
+</ion-content>

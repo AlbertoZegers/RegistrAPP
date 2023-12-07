@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="navegador">
+    <ion-title>Recuperar Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-img class="ion-margin-top" src="assets\usuario-perfiles.svg"></ion-img>
+  <ion-item class="fondo input ion-margin-top" lines="none">
+    <ion-input label="Usuario" labelPlacement="floating" [(ngModel)]="mdl_usuario"></ion-input>
+  </ion-item>
+  <ion-item class="fondo input ion-margin-top" lines="none">
+    <ion-input label="Contraseña Nueva" type="password" labelPlacement="floating" [(ngModel)]="mdl_newpassword"></ion-input>
+  </ion-item>
+  <ion-item class="fondo input ion-margin-top" lines="none">
+    <ion-input label="Contraseña Actual" type="password" labelPlacement="floating" [(ngModel)]="mdl_password"></ion-input>
+  </ion-item>
+  <ion-button color="warning" (click)="modificar()" expand="block"> Guardar </ion-button>
+  <ion-button color="warning"(click)="volver()" expand="block"> Volver </ion-button>
+</ion-content>
