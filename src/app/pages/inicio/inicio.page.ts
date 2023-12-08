@@ -53,6 +53,10 @@ export class InicioPage implements OnInit {
   }
 
   async scan(): Promise<void> {
+    const ress = await BarcodeScanner.isGoogleBarcodeScannerModuleAvailable();
+    if (!ress.available) {
+      await BarcodeScanner.installGoogleBarcodeScannerModule()
+    }
     const granted = await this.requestPermissions();
     if (!granted) {
       this.presentAlert();
@@ -60,16 +64,41 @@ export class InicioPage implements OnInit {
     }
     const { barcodes } = await BarcodeScanner.scan();
     this.barcodes.push(...barcodes);
-    let datos = this.barcodes[this.barcodes.length - 1].rawValue;
-    let lista = datos.split('|');
-    let seccion = lista[0];
-    let asignatura = lista[1]; 
-    let fecha = lista[3];
-    console.log('coer'+datos);
-    let data = this.apiService.asistenciaAlmacenar(this.usuario, asignatura, seccion, fecha);
-    let respuesta = await lastValueFrom(data);
-    let estado = JSON.stringify(respuesta);
-    console.log('coer'+estado);
+    let data = this.barcodes[this.barcodes.length -1].rawValue
+    let lista = data.split('|')
+    let asignatura = lista[0].split("-")[0]
+    let seccion = lista[0].split("-")[1]
+    let fecha= lista[3]
+    try {
+      this.apiService.asistenciaAlmacenar(this.usuario,asignatura,seccion,fecha).subscribe(
+        async (response: any) => {
+          if (response.result[0].RESPUESTA == 'ASISTENCIA_OK') {
+            const alert = await this.alertController.create({
+              header: 'Registro asistencia correcto',
+              message: 'Asitencia Guardada',
+              buttons: ['OK']
+            });
+            await alert.present();
+          }
+          else if (response.result[0].RESPUESTA == 'ASISTENCIA_NOK'){
+            const alert = await this.alertController.create({
+              header: 'Registro asistencia incorrecto',
+              message: 'Ya estas presente',
+              buttons: ['OK']
+            });
+            await alert.present();
+          }
+        }
+      )
+    } catch (error) {
+      const alert = await this.alertController.create({
+        header: 'Error en la asistencia',
+        message: 'Hubo un problema.',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
+    location.reload()
   }
 
   async requestPermissions(): Promise<boolean> {
